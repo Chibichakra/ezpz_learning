@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+<title>Bootstrap Simple Registration Form</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm px-5" style="background-color: rgba(98, 10, 23, 0.466);">
+		<div class="navbar-nav">
+		  <a class="nav-link active text-light" href="#">Home</a>
+		  <a class="nav-link text-light" href="#">About</a>
+		  <a class="nav-link text-light" href="#">Contact</a>
+		</div>
+	
+		<!-- Right-aligned items -->
+		<div class="navbar-nav ms-auto">
+		  <a class="nav-link text-light" href="#">Login</a>
+		  <a class="nav-link text-light" href="{{url_for('register')}}">Sign Up</a>
+		</div>
+	</nav>
+	<div class="container-fluid p-0" style="background-color:rgba(202, 36, 36, 0.14)">
+		<div class="row h-100">
+		  <div class="col-sm-2 container position-relative  d-none d-sm-block">
+		  </div>
+		  <div class="col-sm-8 position-relative p-5" style="min-height: 80vh;" id="content" onmouseup="showButton()">
+			<div class="signup-form container-fluid">
+				<form action="/register" method="post">
+					<h2>Register</h2>
+					<div class="form-group">
+						<div class="row">
+							<div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"></div>
+							<div class="col"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"></div>
+						</div>        	
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" name="email" placeholder="Email" required="required">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" name="password" placeholder="Password" required="required">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+					</div>        
+					<div class="form-group">
+						<label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-lg btn-block">Register Now</button>
+					</div>
+				</form>
+		  	</div>
+			</div>
+		  <div class="col-sm-2 container position-relative d-none d-sm-block" >
+		  </div>
+		</div>
+		</div>
+	  </div>
+	
+	</div>
+	<footer class="text-light position-relative" style="background-color:rgba(98, 10, 23, 0.182);height:10vw; max-height: 75px;" >
+		<p class="position-absolute top-50" style="left:30vw;">
+		  &copy; 2023 Chibichakra
+		</p>
+	</footer> 
+</body>
+</html>

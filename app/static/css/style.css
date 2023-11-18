@@ -1,0 +1,188 @@
+body{
+    background-color: #ff9d00;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23000' stroke-width='66.7' stroke-opacity='0.05' %3E%3Ccircle fill='%23ff9d00' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23fb8d17' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%23f47d24' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%23ed6e2d' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23e35f34' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%23d85239' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23cc453e' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%23be3941' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23b02f43' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23a02644' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23901e44' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%23801843' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%236f1341' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%235e0f3d' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%234e0c38' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%233e0933' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%232e062c' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23210024' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+    overflow-x:hidden;
+    background-size: cover;
+    position: relative;
+    /* font-family: 'Roboto', sans-serif; */
+}
+
+.break-text {
+    word-wrap: break-word;
+}
+
+
+.custom-border {
+    border: 1px solid #ffffff;
+    margin-top: 15px; 
+}
+
+
+.mate{
+    background-image: url("mate.svg");
+}
+
+.chapter{
+    box-shadow: 5px 10px 10px rgba(47, 14, 14, 0.822);
+    width:100%;
+    background-color: rgba(255, 254, 254, 0.836);
+    
+}
+
+
+
+.aspect-ratio-21{
+    aspect-ratio: 2/1;
+}
+
+.twig{
+    background-image: url(twig.svg);
+    background-size: cover;
+    pointer-events: none;
+    
+}
+
+.question{
+    background-image: url(question.svg);
+    background-size: cover;
+    display: None;
+    
+}
+
+
+.close{
+    background-image:url(close.svg);
+    background-size: cover;
+    border-radius:50%;
+}
+
+.custom-scrollbar{
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 7px;
+}
+  
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.921);
+}
+  
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius:3px;
+}
+
+.close:hover{
+    background-color: rgba(201, 181, 181, 0.534);
+    border:1px solid rgba(0, 0, 0, 0.349);
+}
+
+.close:active{
+    background-color: rgba(185, 151, 151, 0.373);
+    border:1px solid rgba(129, 17, 17, 0.349);
+}
+
+
+
+#pop-up{
+    display:none;
+}
+
+.form-control {
+	height: 40px;
+	box-shadow: none;
+	color: #969fa4;
+}
+.form-control:focus {
+	border-color: #000000;
+}
+.form-control, .btn {        
+	border-radius: 3px;
+}
+.signup-form {
+	width: 450px;
+	margin: 0 auto;
+	padding: 30px 0;
+  	font-size: 15px;
+}
+.signup-form h2 {
+	color: #636363;
+	margin: 0 0 15px;
+	position: relative;
+	text-align: center;
+}
+.signup-form h2:before, .signup-form h2:after {
+	content: "";
+	height: 2px;
+	width: 30%;
+	background: #d4d4d4;
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+}	
+.signup-form h2:before {
+	left: 0;
+}
+.signup-form h2:after {
+	right: 0;
+}
+.signup-form .hint-text {
+	color: #999;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.signup-form form {
+	color: #999;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	background: rgba(255, 253, 253, 0.932);
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+    border-radius: 10px;
+}
+.signup-form .form-group {
+	margin-bottom: 20px;
+}
+.signup-form input[type="checkbox"] {
+	margin-top: 3px;
+}
+.signup-form .btn {        
+	font-size: 16px;
+	font-weight: bold;		
+	min-width: 140px;
+	outline: none !important;
+}
+.signup-form .row div:first-child {
+	padding-right: 10px;
+}
+.signup-form .row div:last-child {
+	padding-left: 10px;
+}    	
+.signup-form a {
+	color: rgb(255, 202, 202);
+	text-decoration: underline;
+}
+.signup-form a:hover {
+	text-decoration: none;
+}
+.signup-form form a {
+	color: rgb(45, 7, 7);
+	text-decoration: none;
+}	
+.signup-form form a:hover {
+	text-decoration: underline;
+}  
+
+.signup-form button {
+    color:white;
+	background-color: rgb(122, 44, 76);
+} 
+.signup-form button:hover {
+    color:white;
+	background-color: rgb(86, 19, 47);
+}  
+
+.signup-form button:active {
+    color:white;
+	background-color: rgb(122, 44, 76);
+}
