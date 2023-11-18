@@ -49,6 +49,10 @@ body{
     
 }
 
+.blob{
+	background-image: url(blob.svg);
+	background-size: cover;
+}
 
 .close{
     background-image:url(close.svg);
@@ -186,3 +190,19 @@ body{
     color:white;
 	background-color: rgb(122, 44, 76);
 }
+
+#content button {
+    color:white;
+	background-color: rgb(122, 44, 76);
+	border:none;
+} 
+#content button:hover {
+    color:white;
+	background-color: rgb(86, 19, 47);
+}  
+
+#content button:active {
+    color:white;
+	background-color: rgb(122, 44, 76);
+}
+
