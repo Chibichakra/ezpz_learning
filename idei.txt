@@ -1,0 +1,8 @@
+-fiecare user sa aibe un profil diferit. Sa fie la inceputul folosirii o intrebare cum ar fi ce varsta ai
+si dupa aceea sa ii dam prompturi lui chat gipiti cum ar fi " explica-mi ca pt un copil de 7 ani chestia ata"
+-embedded site :3. Putem pastra cateva cursuri, dar ar fi mai util also unsafe :( ca un user sa poata introduce
+un site si sa dam embed la el.
+-matlab integration bcs why not
+
+-exista 2 extensii asemanatoare: una care iti simplifica textul citit. Putem adauga si noi asta in cod cu functionalitati cum ar fi: fa asta mai usor de inteles, fa-mi un rezumat la, introduce ecuatia in matlab.
+-chat gpt care sa apara pe langa searchurile facute de user
