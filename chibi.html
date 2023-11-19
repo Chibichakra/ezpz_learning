@@ -12,42 +12,52 @@
 </head>
 <script>
   var selectedText="";
+  function getIframeSelectionText(iframe) {
+    var win = iframe.contentWindow;
+    var doc = win.document;
 
-    function checkSelection() {
-      if (selectedText==""){
-        return
+    if (win.getSelection) {
+      return win.getSelection().toString();
+    } else if (doc.selection && doc.selection.createRange) {
+      return doc.selection.createRange().text;
+    }
+  }
+
+
+    function myGetSelection(){
+
+      var iframe = document.getElementById("frame");
+      var newSelectedText = getIframeSelectionText(iframe);
+      if (selectedText!=""){
+        selectedText = newSelectedText;
+        alert(getIframeSelectionText(iframe));
       }
+    }
+    function search(){
+        var searchPage = document.getElementById("search-page");
+        var frameURL = document.getElementById("url").value;
+        searchPage.style.display = "None";
+        
+        var question = document.getElementById("questionId");
+        question.style.display="block";
+        var iframe = document.getElementById('frame');
+        iframe.src = frameURL;
+        iframe.style.display = "block";
+
+
+    }
+
+    function buttonClicked(){
+
       var selectedTextDiv = document.getElementById('selected-text');
+      selectedTextDiv.display = "block";
       selectedTextDiv.innerText  = selectedText;
       var myDiv = document.getElementById('pop-up');
       myDiv.style.display="Block";
       myDiv.style.top =  '20vh';
       myDiv.style.left = '20vw';
-
     }
-    function showButton(){
-      var newSelectedText = document.getSelection().toString();
-      if (newSelectedText!=""){
-        selectedText = newSelectedText;
-      }
-      var html = document.documentElement;
-      var body = document.body;
-
-      var question = document.getElementById('questionId');
-      var rect = body.getBoundingClientRect();
-      
-      var mouseY = event.clientY - rect.top + body.scrollTop;
-      var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
-      question.style.display="block";
-      question.style.bottom = height - mouseY -80+"px";
-    }
-
-
-    function closePopup(){
-      var myDiv = document.getElementById('pop-up');
-      myDiv.style.display = "none";
-    }
-  </script>
+</script>
 <body>
   
 
@@ -69,25 +79,45 @@
     <div class="row h-100">
         <div class="col-sm-2 container position-relative  d-none d-sm-block"></div>
         <div class="col-sm-8 position-relative p-5" style="min-height: 80vh;box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.223), 0 6px 20px 0 rgba(0, 0, 0, 0.19);background-color:white;" id="content">
-            <div class="row container-fluid">
-                <div class="col-sm-4 h-100 position-relative" style="background-color: green; min-height: 80vh;">
+            <div class="row container-fluid" id="search-page" >
+                <div class="col-sm-4 h-100 position-relative" style=" min-height: 80vh;">
                     <div class="form-group position-absolute top-50">
                         <label  for="url">Url for the resource:</label>
                         <input type="text" class="form-control" id="url" placeholder="https://website.you.need.com/">
-                        <button type="submit" class="btn btn-primary mt-3">Search</button>
+                        <button type="submit" class="btn btn-primary mt-3" onclick="search()">Search</button>
                     </div>
                 </div>
-                <div class="col-sm-8 h-100 position-relative" style="background-color: red;min-height: 80vh;">
+                <div class="col-sm-8 h-100 position-relative  d-none d-sm-block" style="min-height: 80vh;">
                     <div class="blob position-absolute" style="width:100%; aspect-ratio: 1/1;"></div>
+                    <div class="pencil position-absolute top-25" style="width:80%; aspect-ratio: 1/1;"></div>
                 </div>
             </div>
+        
+            <div class="embed-responsive" " >
+              <iframe id="frame" class="position-absolute embed-responsive-item" style="width:80%; height: 80%;" src="" onmouseup="myGetSelection()"></iframe>
+            </div>
+            <div class="question position-absolute" id="questionId" style="width:50px; aspect-ratio:1/1;right:5px; top:50%;" onclick="buttonClicked()"></div>
         </div>
       <div class="col-sm-2 container position-relative d-none d-sm-block" ></div>
+      <div class="chapter position-fixed w-75" style="top:10%; right:0%; aspect-ratio:2/1; background-color: rgba(247, 247, 247, 0.949);" id="pop-up">
+        <div class="w-100 h-100 custom-scrollbar p-3 pt-4" style="overflow-y:auto">
+          <div class="close position-absolute" style="right:3%; top:3%;height:10%; aspect-ratio: 1/1;" onclick="closePopup()">
+          </div>
+          <h3>
+            Selected Text:
+          </h3>
+          <div  id="selected-text"></div>
+          <h3>
+            <br>
+            Explanation:
+          </h3>
+          <div  id="explanation">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="d-none d-sm-block position-absolute twig"  style="left:0vw;bottom:0;width:20vw; height:20vw;">
-  </div>
-  <div class="d-none d-sm-block position-absolute twig"  style="rotate:200deg;right:0vw;top:50px;width:20vw; height:20vw;">
   </div>
 
   <footer class="text-light position-relative" style="background-color:rgba(98, 10, 23, 0.182);height:10vw; max-height: 75px;" >

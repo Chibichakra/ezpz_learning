@@ -45,12 +45,17 @@ body{
 .question{
     background-image: url(question.svg);
     background-size: cover;
-    display: None;
+	display: None;
     
 }
 
 .blob{
 	background-image: url(blob.svg);
+	background-size: cover;
+}
+
+.pencil{
+	background-image: url(pencil.svg);
 	background-size: cover;
 }
 
@@ -206,3 +211,6 @@ body{
 	background-color: rgb(122, 44, 76);
 }
 
+#frame{
+	display: none;
+}
