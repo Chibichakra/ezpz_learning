@@ -62,7 +62,7 @@ def login():
             user = User.query.filter(User.email == email).all()
             # if user == [] or bcrypt.check_password_hash(user[0].password, password) != True:
             if user == [] or user[0].password != password:
-                return render_template('login.html', msg='Incorrect email or password!')
+                return render_template('login.html', error='Incorrect email or password!')
 
             login_user(user[0])
 
