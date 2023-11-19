@@ -1,5 +1,5 @@
 from flask import Flask, request, session, render_template, redirect
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, current_user, login_required, logout_user
 from models import ExpandModel
 from flask_bcrypt import Bcrypt 
 from database import *
@@ -8,7 +8,7 @@ import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(32)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{os.environ["MYSQL_USER"]}:{os.environ["MYSQL_PASSWORD"]}@db:3306/{os.environ["MYSQL_DATABASE"]}'
 
 # Initialization step
 with app.app_context():
@@ -19,8 +19,8 @@ with app.app_context():
     login_manager.init_app(app)
 
 @login_manager.user_loader
-def load_user(user):
-    return User.get(user)
+def load_user(user_id):
+    return User.query.filter(User.id == user_id).one()
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -30,15 +30,17 @@ def register():
     else:
         form = RegistrationForm(request.form)
         if form.validate():
-            username = form.username.data
+            email = form.email.data
             password = form.password.data
-            hashed_password = bcrypt.generate_password_hash(password).decode() 
+            hashed_password = bcrypt.generate_password_hash(password).decode()
 
-            user = User.query.filter(User.username == username).all()
+         
+
+            user = User.query.filter(User.email == email).all()
             if user != []:
                 return render_template('register.html', error='User already exists!')
 
-            db.session.add(User(username = username, password = hashed_password))
+            db.session.add(User(email = email, password = password))
             db.session.commit()
         else:
             field, msg = list(form.errors.items())[0]
@@ -47,30 +49,59 @@ def register():
 
     return redirect('login')
 
-@app.post('/api/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    json_data = request.get_json()
-    form = LoginForm.from_json(json_data)
-    if form.validate():
-        username = json_data['username']
-        password = json_data['password']
-
-        user = User.query.filter(User.username == username).all()
-        if user == [] or bcrypt.check_password_hash(user[0].password, password) != True:
-            return {'msg': 'Incorrect username or password!'}, 400
-
-        login_user(user[0])
-
+    if request.method == 'GET':
+        return render_template('login.html')
     else:
-        field, msg = list(form.errors.items())[0]
-        return {'msg': f'{field}: {msg[0]}'}, 400
+        form = LoginForm(request.form)
+        if form.validate():
+            email = form.email.data
+            password = form.password.data
+
+            user = User.query.filter(User.email == email).all()
+            # if user == [] or bcrypt.check_password_hash(user[0].password, password) != True:
+            if user == [] or user[0].password != password:
+                return render_template('login.html', msg='Incorrect email or password!')
+
+            login_user(user[0])
+
+        else:
+            field, msg = list(form.errors.items())[0]
+            return render_template('login.html', error=f'{field}: {msg[0]}')
 
 
-    return {'msg': 'User logged in successfully!'}, 200
+    return redirect('/dashboard')
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect('/')
+
+@app.route('/', methods=['GET'])
+def main():
+    return render_template('main.html')
+
+@app.route('/dashboard', methods=['GET'])
+@login_required
+def dashboard():
+    return render_template('dashboard.html')
+
+@app.route('/chapter', methods=['GET'])
+@login_required
+def chapter():
+    return render_template('chapter.html')
+
+@app.route('/self', methods=['GET'])
+@login_required
+def chibi():
+    return render_template('chibi.html')
 
     
 
 @app.post('/api/expand')
+@login_required
 def expand():
     data = request.get_json()
     phrase = data.get('phrase', None)

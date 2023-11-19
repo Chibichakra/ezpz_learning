@@ -6,8 +6,8 @@ db = SQLAlchemy()
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(30))
-    password = db.Column(db.String(50))
+    email = db.Column(db.String(50))
+    password = db.Column(db.String(1000))
 
 class Course(db.Model):
     # Fields

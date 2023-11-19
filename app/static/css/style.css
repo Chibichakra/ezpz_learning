@@ -19,7 +19,7 @@ body{
 
 
 .mate{
-    background-image: url("mate.svg");
+    background-image: url("/static/images/mate.svg");
 }
 
 .chapter{
@@ -36,22 +36,31 @@ body{
 }
 
 .twig{
-    background-image: url(twig.svg);
+    background-image: url(/static/images/twig.svg);
     background-size: cover;
     pointer-events: none;
     
 }
 
 .question{
-    background-image: url(question.svg);
+    background-image: url(/static/images/question.svg);
     background-size: cover;
-    display: None;
+	display: None;
     
 }
 
+.blob{
+	background-image: url(/static/images/blob.svg);
+	background-size: cover;
+}
+
+.pencil{
+	background-image: url(/static/images/pencil.svg);
+	background-size: cover;
+}
 
 .close{
-    background-image:url(close.svg);
+    background-image:url(/static/images/close.svg);
     background-size: cover;
     border-radius:50%;
 }
@@ -185,4 +194,23 @@ body{
 .signup-form button:active {
     color:white;
 	background-color: rgb(122, 44, 76);
+}
+
+#content button {
+    color:white;
+	background-color: rgb(122, 44, 76);
+	border:none;
+} 
+#content button:hover {
+    color:white;
+	background-color: rgb(86, 19, 47);
+}  
+
+#content button:active {
+    color:white;
+	background-color: rgb(122, 44, 76);
+}
+
+#frame{
+	display: none;
 }

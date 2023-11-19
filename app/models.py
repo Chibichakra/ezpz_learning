@@ -1,9 +1,10 @@
 from openai import OpenAI
+import os
 
 class ExpandModel:
     def __init__(self, context, extra_context = None) -> None:
         self.client = OpenAI(
-            api_key="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",
+            api_key=os.environ['OPENAI_APIKEY'],
         )
         self.model = 'gpt-3.5-turbo'
         self.default_messages = [{"role": "system", "content": "You need to provide more details related to a specific paragraph or phrase depending on the following context: " + context}]

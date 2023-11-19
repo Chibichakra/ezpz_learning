@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  web:
+    build: '.'
+    ports:
+      - '5000:5000'
+    env_file:
+      - .env
+
+  db:
+    image: mysql:5.7
+    restart: always
+    env_file:
+      - .env
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql
+
+volumes:
+  my-db:
+

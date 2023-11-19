@@ -4,9 +4,9 @@ from wtforms import Form, BooleanField, StringField, PasswordField, validators
 # wtforms_json.init()
 
 class RegistrationForm(Form):
-    username = StringField('username', [validators.DataRequired(), validators.Email()])
+    email = StringField('email', [validators.DataRequired(), validators.Email()])
     password = PasswordField('password', [validators.DataRequired()])
 
 class LoginForm(Form):
-    username = StringField('username', [validators.DataRequired(), validators.Email()])
+    email = StringField('email', [validators.DataRequired(), validators.Email()])
     password = PasswordField('password', [validators.DataRequired()])
